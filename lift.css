@@ -1,0 +1,158 @@
+:root{
+    --lift-duration: 2s;
+    --lift-distance: 0px;
+}
+
+body{
+    background-color: rgb(114, 163, 129);
+}
+
+#Simulation{
+    background-color: #c3bac6;
+}
+
+.inputOptions{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.EntryForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+input{
+    font-weight: bolder;
+}
+
+label{
+    font-weight:bolder;
+}
+
+#error{
+    color: rgb(0, 0, 0);
+    margin: 10px auto;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.lift-Controls{
+/*   border: 1px solid red; */
+    height: 100px;
+    width: 50px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+button{
+    width: 100%;
+    cursor: pointer;
+}
+
+.up{
+    background-color: #73BE73;
+    border-radius: 15%;
+    width: 50px;
+    height: 30px;
+}
+
+.down{
+    background-color: #FFC72C;
+    border-radius: 15%;
+    width: 50px;
+    height: 30px;
+}
+
+button:disabled{
+    cursor: default;
+}
+
+.floor-body{
+    /* padding: 10px; */
+}
+
+.floor-line{
+    border :2px solid black;
+    flex-grow: 1;
+    width: auto;
+}
+
+.floor-line-container{
+/*   border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+span{
+    margin-left: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.lifts{
+/*   border: 1px solid green; */
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: auto;
+    height: 100px;
+    flex-wrap: wrap;
+    /* margin-bottom: 0px; */
+    gap: 50px;
+
+      /* border: 1px solid green;
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    width: 100%;
+    height: 100px;
+    flex-wrap: wrap;
+    gap: 5%;  */
+}
+
+.lift{
+    height: 100%;
+    width: 50px;
+    background-color: #318CE7;
+    transform: translateY(var(--lift-distance));
+    transition: transform var(--lift-duration) linear;
+
+    /* animation: move-lift 2s ease-in-out forwards; */
+}
+
+
+.lift-structure{
+/*   border: 1px solid green; */
+    display: flex;
+    width: 90%;
+    flex-grow: 1;
+    gap: 40px;
+}
+
+/* #lift-1{
+    animation: move-lift 2s ease-in-out forwards;
+} */
+
+@keyframes move-lift {
+    0%{
+        transform: translateY(0); /* Start at the bottom */
+    }
+
+    100% {
+        transform: translateY(-120px); /* Move back to the bottom */
+    }
+}
+
+lift-animation{
+    transform: translateY(var(--lift-distance));
+    transition: transform var(--lift-duration) linear;
+}
