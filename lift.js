@@ -242,7 +242,7 @@ const findTheTagetLift = (destinationFloor, direction)=>{
         let diff = Math.abs(availableLifts[i].liftPosition - destinationFloor);
         
         if(diff == 0){
-            if (availableLifts[i].direction === direction || liftData.length == 1)
+            if (availableLifts[i].direction === direction || liftData.length == 1 || availableLifts[i].direction === undefined )
                 return availableLifts[i].liftId;
             else{
                 continue;
