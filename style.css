@@ -40,7 +40,7 @@ label{
 }
 
 .lift-Controls{
-/*   border: 1px solid red; */
+  /* border: 1px solid red; */
     height: 100px;
     width: 50px;
     overflow: hidden;
@@ -48,7 +48,8 @@ label{
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    flex-wrap: wrap;
+    flex-shrink: 0;
+    /* flex-wrap: wrap; */
 }
 
 button{
@@ -74,10 +75,6 @@ button:disabled{
     cursor: default;
 }
 
-.floor-body{
-    /* padding: 10px; */
-}
-
 .floor-line{
     border :2px solid black;
     flex-grow: 1;
@@ -89,7 +86,7 @@ button:disabled{
     width: 100%;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 span{
@@ -99,48 +96,40 @@ span{
 }
 
 .lifts{
-/*   border: 1px solid green; */
+  /* border: 1px solid green; */
     display: flex;
     flex-direction: row;
     justify-content: left;
-    width: auto;
+    /* width: max-content; */
     height: 100px;
-    flex-wrap: wrap;
-    /* margin-bottom: 0px; */
-    gap: 50px;
-
-      /* border: 1px solid green;
-    display: flex;
-    flex-direction: row;
-    justify-content:left;
-    width: 100%;
-    height: 100px;
-    flex-wrap: wrap;
-    gap: 5%;  */
+    /* flex-wrap: nowrap; */
+    gap: 40px;  
+    /* overflow: scroll; */
+    /* max-width: 100%; */
+    /* overflow-x: auto; */ /*lifts disappears in to the floor*
+    /* flex-grow: 1; */
 }
 
 .lift{
+    /* border: 1px solid red; */
     height: 100%;
     width: 50px;
-    background-color: #318CE7;
+    background-color: grey;
     transform: translateY(var(--lift-distance));
     transition: transform var(--lift-duration) linear;
-
-    /* animation: move-lift 2s ease-in-out forwards; */
+    position: relative;
+    /* overflow: hidden; */
 }
 
 
 .lift-structure{
-/*   border: 1px solid green; */
+  /* border: 1px solid red; */
     display: flex;
-    width: 90%;
+    max-width: 100%;
     flex-grow: 1;
-    gap: 40px;
+    gap: 70px;
+    /* align-items: center; */
 }
-
-/* #lift-1{
-    animation: move-lift 2s ease-in-out forwards;
-} */
 
 @keyframes move-lift {
     0%{
@@ -156,3 +145,60 @@ lift-animation{
     transform: translateY(var(--lift-distance));
     transition: transform var(--lift-duration) linear;
 }
+
+.left-door{
+    left: 0;
+}
+
+.right-door{
+    right: 0;
+}
+
+.door{
+    width: 50%;
+    height: 100%;
+    background-color: rgb(17, 155, 202);
+    position: absolute;
+}
+
+@keyframes openDoors {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes closeDoors {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .left-door.open {
+    animation: openDoors 2.5s ease-in-out;
+  }
+  
+  .right-door.open {
+    animation: closeDoors 2.5s ease-in-out;
+  }
+
+  /* .lifts-wrapper{
+    overflow-x: auto;
+    flex-grow: 1;
+    max-width: 100%;
+  } */
+
+  .floor-body{
+    padding: 2px;
+  }
