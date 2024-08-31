@@ -6,6 +6,7 @@ const simulationElement = document.getElementById("Simulation");
 let floorData = [];
 let liftData = [];
 let inProgressLifts = new Set();
+let timeOuts = [];
 
 class LiftQueue{
     constructor(){
@@ -79,6 +80,11 @@ generateButton.addEventListener('click', function(){
     floorData = [];
     liftData = [];
 
+    timeOuts.filter((val)=>{clearTimeout(val)});
+    timeOuts = [];
+
+    inProgressLifts.clear();
+
     let floorInput = document.getElementById("floorInput").value;
     let liftInput = document.getElementById("LiftInput").value;
 
@@ -117,6 +123,8 @@ const generateSimulation = (liftInput, floorInput)=>{
 const generateFloorBody = (i,liftInput, floorInput)=>{
     const floorBody = document.createElement("div");
     floorBody.className = "floor-body";
+    floorBody.style.width = ((120)*(+liftInput+1)) +'px';
+    // console.log(floorBody.style.width);
 
     if(i == 0){
 
@@ -277,17 +285,20 @@ function toggleDoors(liftId) {
     leftDoor.classList.toggle('open');
     rightDoor.classList.toggle('open');
 
-    setTimeout(() => {
+    const t1 = setTimeout(() => {
         leftDoor.classList.toggle('open');
         rightDoor.classList.toggle('open');    
     }, 2500);
+
+    timeOuts.push(t1);
+
   }
 
 const moveLift =  (targetLiftIndex, destinationFloor, direction)=>{
     console.log("Move Lift started...", targetLiftIndex, direction, destinationFloor);
     // console.log("Lift positions: " + liftPositions);
 
-    const targetY = (0 - destinationFloor)*124;
+    const targetY = (0 - destinationFloor)*145;
     const targetTime = Math.abs((liftData[targetLiftIndex].liftPosition - destinationFloor) * 2); 
 
 
@@ -296,9 +307,11 @@ const moveLift =  (targetLiftIndex, destinationFloor, direction)=>{
     document.getElementById(`lift-${targetLiftIndex}`).style.setProperty('--lift-distance', `${targetY}px`);
     document.getElementById(`lift-${targetLiftIndex}`).style.setProperty('--lift-duration', `${targetTime}s`);
 
-    setTimeout(() => {
+    const t2 = setTimeout(() => {
         toggleDoors(`lift-${targetLiftIndex}`);
     }, targetTime*1000);
+
+    timeOuts.push(t2);
 
     liftData[targetLiftIndex].isMoving = true;
     liftData[targetLiftIndex].direction = direction;
@@ -322,7 +335,7 @@ const moveLift =  (targetLiftIndex, destinationFloor, direction)=>{
     
         const startTime = performance.now();
 
-        setTimeout(() => {
+        const t3 = setTimeout(() => {
             const endTime = performance.now();
             const actualDelay = endTime - startTime;
     
@@ -338,6 +351,7 @@ const moveLift =  (targetLiftIndex, destinationFloor, direction)=>{
            liftQueue.processNext();
         }, (targetTime*1000)+2500);
     
+        timeOuts.push(t3);
 
     // console.log("------------------------------------------");
 }
