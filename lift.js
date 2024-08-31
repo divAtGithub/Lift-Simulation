@@ -93,8 +93,8 @@ generateButton.addEventListener('click', function(){
         return; 
     }
 
-    if(liftInput < 1 || floorInput < 1 ){
-        errorElement.innerHTML = "Please enter a valid value between 1-10";
+    if(liftInput < 0 || floorInput < 1 ){
+        errorElement.innerHTML = "Please enter a valid input.";
         return;
     }
 
