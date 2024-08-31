@@ -9,6 +9,7 @@ body{
 
 #Simulation{
     background-color: #c3bac6;
+    width: auto;
 }
 
 .inputOptions{
@@ -103,11 +104,12 @@ span{
     /* width: max-content; */
     height: 100px;
     /* flex-wrap: nowrap; */
-    gap: 40px;  
+    gap: 70px;  
     /* overflow: scroll; */
     /* max-width: 100%; */
     /* overflow-x: auto; */ /*lifts disappears in to the floor*
     /* flex-grow: 1; */
+    max-width: auto;
 }
 
 .lift{
@@ -118,7 +120,7 @@ span{
     transform: translateY(var(--lift-distance));
     transition: transform var(--lift-duration) linear;
     position: relative;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 
