@@ -126,7 +126,7 @@ const generateFloorBody = (i,liftInput, floorInput)=>{
     floorBody.style.width = ((120)*(+liftInput+1)) +'px';
     // console.log(floorBody.style.width);
 
-    if(i == 0){
+    if(i == 0 && liftInput >= 1){
 
         const liftStructure = document.createElement("div");
         liftStructure.className = "lift-structure";
@@ -190,39 +190,42 @@ const generateFloorBody = (i,liftInput, floorInput)=>{
     }
 
     else{
-        const liftControls = document.createElement("div");
-        liftControls.className = "lift-Controls";
-    
-        const upButton = document.createElement("button");
-        upButton.innerHTML = "Up";
-        upButton.className = "button up";
-        if (i == floorInput-1){
-            upButton.disabled = true;
-            upButton.id = "upButton-"+i;
-            // liftControls.appendChild(upButton);
-        }
-        else{
-            upButton.id = "upButton-"+i;
-            upButton.addEventListener("click", ()=>{
-                const liftOperation = new LiftOperations(upButton.id);
+        if(liftInput >=1 ){
+            const liftControls = document.createElement("div");
+            liftControls.className = "lift-Controls";
+        
+            const upButton = document.createElement("button");
+            upButton.innerHTML = "Up";
+            upButton.className = "button up";
+            if (i == floorInput-1){
+                upButton.disabled = true;
+                upButton.id = "upButton-"+i;
+                // liftControls.appendChild(upButton);
+            }
+            else{
+                upButton.id = "upButton-"+i;
+                upButton.addEventListener("click", ()=>{
+                    const liftOperation = new LiftOperations(upButton.id);
+                    liftQueue.enqueue(liftOperation);
+                    //callLift(upButton.id);
+                });
+                liftControls.appendChild(upButton);
+            }
+        
+            const downButton = document.createElement("button");
+            downButton.innerHTML = "Down";
+            downButton.className = "button down";
+            downButton.id = "downButton-"+i;
+            downButton.addEventListener("click", ()=>{
+                const liftOperation = new LiftOperations(downButton.id);
                 liftQueue.enqueue(liftOperation);
-                //callLift(upButton.id);
+                // callLift(downButton.id);
             });
-            liftControls.appendChild(upButton);
+            liftControls.appendChild(downButton);
+        
+            floorBody.appendChild(liftControls);
         }
-    
-        const downButton = document.createElement("button");
-        downButton.innerHTML = "Down";
-        downButton.className = "button down";
-        downButton.id = "downButton-"+i;
-        downButton.addEventListener("click", ()=>{
-            const liftOperation = new LiftOperations(downButton.id);
-            liftQueue.enqueue(liftOperation);
-            // callLift(downButton.id);
-        });
-        liftControls.appendChild(downButton);
-    
-        floorBody.appendChild(liftControls);
+  
     }
 
     const floorLineContainer = document.createElement("div");
