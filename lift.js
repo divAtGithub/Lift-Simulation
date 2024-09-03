@@ -94,7 +94,7 @@ generateButton.addEventListener('click', function(){
     }
 
     if(liftInput < 0 || floorInput < 1 ){
-        errorElement.innerHTML = "The value of floors and lifts can't be less than 1";
+        errorElement.innerHTML = " Please enter a valid input. \n Floors >= 1 and Lifts >= 0";
         return;
     }
 
