@@ -281,6 +281,7 @@ const generateFloorBody = (i,liftInput, floorInput)=>{
 // }
 
 function toggleDoors(liftId) {
+    // console.log("Toggle door started!", performance.now());
     const lift = document.getElementById(liftId);
     const leftDoor = lift.querySelector('.left-door');
     const rightDoor = lift.querySelector('.right-door');
@@ -291,6 +292,7 @@ function toggleDoors(liftId) {
     const t1 = setTimeout(() => {
         leftDoor.classList.toggle('open');
         rightDoor.classList.toggle('open');    
+        // console.log("Toggle door ended!",performance.now());
     }, 2500);
 
     timeOuts.push(t1);
@@ -352,7 +354,7 @@ const moveLift =  (targetLiftIndex, destinationFloor, direction)=>{
             const lift = document.getElementById(`lift-${targetLiftIndex}`);
 
            liftQueue.processNext();
-        }, (targetTime*1000)+2500);
+        }, (targetTime*1000)+3000);
     
         timeOuts.push(t3);
 
