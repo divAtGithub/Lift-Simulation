@@ -141,6 +141,9 @@ const generateFloorBody = (i,liftInput, floorInput)=>{
         upButton.addEventListener("click", ()=>{
             // console.log("button clicked");
             const liftOperation = new LiftOperations(upButton.id);
+            if(liftQueue.queue.filter((val) => val.targetFloor == liftOperation.targetFloor && val.targetDirection == liftOperation.targetDirection).length != 0){
+                return;
+            }
             liftQueue.enqueue(liftOperation);
             //callLift(upButton.id);
         });
@@ -153,6 +156,9 @@ const generateFloorBody = (i,liftInput, floorInput)=>{
         downButton.id = "downButton-"+i;
         downButton.addEventListener("click", ()=>{
             const liftOperation = new LiftOperations(downButton.id);
+            if(liftQueue.queue.filter((val) => val.targetFloor == liftOperation.targetFloor && val.targetDirection == liftOperation.targetDirection).length != 0){
+                return;
+            }
             liftQueue.enqueue(liftOperation);
             // callLift(downButton.id);
         });
@@ -206,6 +212,9 @@ const generateFloorBody = (i,liftInput, floorInput)=>{
                 upButton.id = "upButton-"+i;
                 upButton.addEventListener("click", ()=>{
                     const liftOperation = new LiftOperations(upButton.id);
+                    if(liftQueue.queue.filter((val) => val.targetFloor == liftOperation.targetFloor && val.targetDirection == liftOperation.targetDirection).length != 0){
+                        return;
+                    }
                     liftQueue.enqueue(liftOperation);
                     //callLift(upButton.id);
                 });
@@ -218,6 +227,9 @@ const generateFloorBody = (i,liftInput, floorInput)=>{
             downButton.id = "downButton-"+i;
             downButton.addEventListener("click", ()=>{
                 const liftOperation = new LiftOperations(downButton.id);
+                if(liftQueue.queue.filter((val) => val.targetFloor == liftOperation.targetFloor && val.targetDirection == liftOperation.targetDirection).length != 0){
+                    return;
+                }
                 liftQueue.enqueue(liftOperation);
                 // callLift(downButton.id);
             });
