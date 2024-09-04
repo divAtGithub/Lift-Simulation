@@ -93,8 +93,8 @@ generateButton.addEventListener('click', function(){
         return; 
     }
 
-    if(liftInput < 0 || floorInput < 1 ){
-        errorElement.innerHTML = " Please enter a valid input. \n Floors >= 1 and Lifts >= 0";
+    if(liftInput < 1 || floorInput < 2 ){
+        errorElement.innerHTML = " Please enter a valid input. \n Floors >= 2 and Lifts >= 1";
         return;
     }
 
